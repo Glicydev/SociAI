@@ -68,7 +68,6 @@ function addMessageUser(message) {
 
 function speak(text) {
     const talk = new SpeechSynthesisUtterance(text);
-    const voices = speechSynthesis.getVoices();
 
     talk.lang = navigator.language
 
