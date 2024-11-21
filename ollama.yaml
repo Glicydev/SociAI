@@ -1,5 +1,0 @@
-base_model: example
-name: sarcastic-ai
-description: "L'IA elle te respecte pas"
-prompt_template: |
-  

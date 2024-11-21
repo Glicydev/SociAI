@@ -1,0 +1,116 @@
+html * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+main {
+    padding: 1rem;
+    height: 80vh;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+section {
+    margin: 1rem 0;
+}
+
+fieldset {
+    border: none;
+    border-top: 1px solid grey;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+legend {
+    margin: auto;
+    padding: 1rem;
+}
+
+input {
+    outline: none;
+    background: none;
+    border: none;
+    border-bottom: 1px black solid;
+    padding: 0.2rem;
+}
+
+input:focus {
+    border-bottom: linear-gradient(to right, blue, blueviolet);
+}
+
+button {
+    background: none;
+    padding: 0.3rem;
+    border: 1px gray solid;
+    border-radius: 15px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: rgb(27, 145, 27);
+    color: white;
+    border-color: rgb(27, 145, 27);
+}
+
+footer {
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+    border-top: 1px solid grey;
+}
+
+
+fieldset ul {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 100%;
+    list-style-type: none;
+    transition: 0.45s;
+    overflow-y: auto;
+}
+
+li {
+    width: fit-content;
+    margin: 0.5rem;
+}
+
+li.messageIa {
+    padding: 0.5rem;
+    color: whitesmoke;
+    text-shadow: #FC0 1px 0 8px;
+    align-self: flex-end;
+    background: linear-gradient(to right, rgb(107, 202, 78), rgb(4, 161, 88));
+    border-radius: 0.6rem;
+}
+
+li.messageUser {
+    padding: 0.5rem;
+    color: whitesmoke;
+    text-shadow: #FC0 1px 0 8px;
+    align-self: flex-start;
+    background: linear-gradient(to left, rgb(179, 0, 155), rgb(223, 88, 117));
+    border-radius: 0.7rem;
+    
+}
+.messageResult{
+    height: 50vh;
+    overflow-y: auto;
+}
+@media (max-width: 900px){
+    fieldset ul {
+        width: 100%;
+    }
+}
