@@ -2,6 +2,7 @@ const sendButton = document.querySelector("button")
 const input = document.querySelector("input")
 const divResult = document.querySelector(".messageResult")
 const mdConverter = new showdown.Converter()
+const ul = document.querySelector("ul")
 
 // Old messages for the context
 let oldMessages = []
@@ -38,10 +39,16 @@ async function askBot(IAName) {
 async function sendMessage() {
     if (!sendButton.disabled) {
         if (input.value) {
+
+            // Disable the button while building message
             sendButton.disabled = true
 
             addMessageUser(input.value)
             let li = loading()
+
+            // For ergonomy
+            input.value = ""
+            input.focus()
 
             const answer = await askBot("greg")
             li.classList.add("generated")
@@ -51,6 +58,9 @@ async function sendMessage() {
             addMessageIa(answer.message.content, li)
 
             saveMessagesInLocalstorage()
+
+            // Scroll down to see all the message
+            ul.scrollTo(0, ul.scrollHeight)
         }
     }
 }
