@@ -35,14 +35,21 @@ async function askBot(IAName) {
 
 // Function to send a message (put it and his answer in the chat)
 async function sendMessage() {
-    addMessageUser(input.value)
-    let li = loading()
+    if (!sendButton.disabled) {
+        if (input.value) {
+            sendButton.disabled = true
 
-    const answer = await askBot("greg")
-    console.log(answer)
-    addMessageIa(answer.message.content, li)
+            addMessageUser(input.value)
+            let li = loading()
 
-    saveMessagesInLocalstorage()
+            const answer = await askBot("greg")
+            sendButton.disabled = false
+
+            addMessageIa(answer.message.content, li)
+
+            saveMessagesInLocalstorage()
+        }
+    }
 }
 
 function loading() {
@@ -95,3 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 sendButton.addEventListener("click", sendMessage)
+input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter")
+        sendMessage()
+})

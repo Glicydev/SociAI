@@ -1,8 +1,13 @@
-html * {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(230, 255, 255);
+}
+
+body {
+    background-color: #222;
 }
 
 main {
@@ -38,8 +43,10 @@ input {
     outline: none;
     background: none;
     border: none;
-    border-bottom: 1px black solid;
     padding: 0.2rem;
+    background-color: #333;
+    border-radius: 2px;
+    padding: 5px;
 }
 
 input:focus {
@@ -50,14 +57,17 @@ button {
     background: none;
     padding: 0.3rem;
     border: 1px gray solid;
-    border-radius: 15px;
+    border-radius: 3px;
     transition: 0.2s;
+    background-color: #acacac;
+    cursor: pointer;
+    margin-left: 1rem;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 button:hover {
-    background-color: rgb(27, 145, 27);
-    color: white;
-    border-color: rgb(27, 145, 27);
+    background-color: #888;
 }
 
 footer {
@@ -85,23 +95,22 @@ fieldset ul {
 li {
     width: fit-content;
     margin: 0.5rem;
+    background-color: #444;
+    padding: 1rem;
+    max-width: 70%;
 }
 
 li.messageIa {
     padding: 0.5rem;
     color: whitesmoke;
-    text-shadow: #FC0 1px 0 8px;
     align-self: flex-end;
-    background: linear-gradient(to right, rgb(107, 202, 78), rgb(4, 161, 88));
     border-radius: 0.6rem;
 }
 
 li.messageUser {
     padding: 0.5rem;
     color: whitesmoke;
-    text-shadow: #FC0 1px 0 8px;
     align-self: flex-start;
-    background: linear-gradient(to left, rgb(179, 0, 155), rgb(223, 88, 117));
     border-radius: 0.7rem;
     
 }
