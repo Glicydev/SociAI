@@ -43,6 +43,8 @@ async function sendMessage() {
             let li = loading()
 
             const answer = await askBot("greg")
+            li.classList.add("generated")
+            
             sendButton.disabled = false
 
             addMessageIa(answer.message.content, li)
