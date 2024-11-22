@@ -1,17 +1,23 @@
 const sendButton = document.querySelector("button")
 const input = document.querySelector("input")
 const divResult = document.querySelector(".messageResult")
+
+// Old messages for the context
 let oldMessages = []
 
+function saveMessagesInLocalstorage() {
+    localStorage.setItem("messages", JSON.stringify(oldMessages))
+}
+
+// Ask the bot a question with the context
 async function askBot(IAName) {
-    console.log(oldMessages)
     const datas = {
         model: IAName,
         stream: false,
         messages: oldMessages
     }
 
-    const answer = await fetch("http://localhost:11434/api/generate", {
+    const answer = await fetch("http://localhost:11434/api/chat", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -27,13 +33,16 @@ async function askBot(IAName) {
     return await answer.json()
 }
 
+// Function to send a message (put it and his answer in the chat)
 async function sendMessage() {
     addMessageUser(input.value)
     let li = loading()
 
     const answer = await askBot("greg")
     console.log(answer)
-    addMessageIa(answer.response, li)
+    addMessageIa(answer.message.content, li)
+
+    saveMessagesInLocalstorage()
 }
 
 function loading() {
@@ -70,8 +79,19 @@ function speak(text) {
     const talk = new SpeechSynthesisUtterance(text);
 
     talk.lang = navigator.language
+    talk.rate = 1.5
+    talk.pitch = 1.5;
 
     speechSynthesis.speak(talk)
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("messages")) {
+        oldMessages = JSON.parse(localStorage.getItem("messages"))
+    }
+    else {
+        oldMessages.push({ role: "user", content: "You have to talk in the language : " + navigator.language })
+    }
+})
 
 sendButton.addEventListener("click", sendMessage)
