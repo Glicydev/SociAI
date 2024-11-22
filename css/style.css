@@ -104,14 +104,12 @@ li {
 
 li.messageIa {
     padding: 0.5rem;
-    color: whitesmoke;
     align-self: flex-end;
     border-radius: 0.6rem;
 }
 
 li.messageUser {
     padding: 0.5rem;
-    color: whitesmoke;
     align-self: flex-start;
     border-radius: 0.7rem;
     animation-name: userMessageSpawn;

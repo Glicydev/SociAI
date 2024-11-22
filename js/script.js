@@ -1,6 +1,7 @@
 const sendButton = document.querySelector("button")
 const input = document.querySelector("input")
 const divResult = document.querySelector(".messageResult")
+const mdConverter = new showdown.Converter()
 
 // Old messages for the context
 let oldMessages = []
@@ -44,7 +45,7 @@ async function sendMessage() {
 
             const answer = await askBot("greg")
             li.classList.add("generated")
-            
+
             sendButton.disabled = false
 
             addMessageIa(answer.message.content, li)
@@ -56,6 +57,7 @@ async function sendMessage() {
 
 function loading() {
     const li = document.createElement("li")
+
     li.innerHtml = "..."
     li.classList.add("messageIa")
     const ul = document.querySelector("ul")
@@ -66,8 +68,8 @@ function loading() {
 }
 
 function addMessageIa(message, li) {
-    li.textContent = message
-    speak(message)
+    li.innerHTML = mdConverter.makeHtml(message)
+    speak(li)
     if (message)
         oldMessages.push({ role: "assistant", content: message })
 }
@@ -84,8 +86,8 @@ function addMessageUser(message) {
     ul.appendChild(li)
 }
 
-function speak(text) {
-    const talk = new SpeechSynthesisUtterance(text);
+function speak(li) {
+    const talk = new SpeechSynthesisUtterance(li.textContent);
 
     talk.lang = navigator.language
     talk.rate = 1.5
