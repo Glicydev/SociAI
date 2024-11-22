@@ -69,9 +69,12 @@ function loading() {
 
 function addMessageIa(message, li) {
     li.innerHTML = mdConverter.makeHtml(message)
+
     speak(li)
     if (message)
         oldMessages.push({ role: "assistant", content: message })
+    hljs.highlightAll()
+
 }
 
 function addMessageUser(message) {
