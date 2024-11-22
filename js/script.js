@@ -68,7 +68,7 @@ async function sendMessage() {
 function loading() {
     const li = document.createElement("li")
 
-    li.innerHtml = "..."
+    li.textContent = "..."
     li.classList.add("messageIa")
     const ul = document.querySelector("ul")
 
