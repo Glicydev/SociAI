@@ -65,8 +65,11 @@ input:focus {
 }
 
 .sender {
-    color: rgb(147, 147, 255);
+    background: linear-gradient(45deg, rgba(143,143,255,1) 0%, rgba(121,121,255,1) 100%);
     font-size: 1.1rem;
+    color: transparent;
+    background-clip: text;
+    font-weight: 400;
 }
 
 .iaSender {
@@ -100,6 +103,7 @@ fieldset ul {
     list-style-type: none;
     transition: 0.45s;
     overflow-y: auto;
+    overflow-x: hidden;
     background-color: #333;
     border-radius: 5px;
     padding: 1rem;

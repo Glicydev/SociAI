@@ -3,12 +3,18 @@ const input = document.querySelector("input")
 const divResult = document.querySelector(".messageResult")
 const mdConverter = new showdown.Converter()
 const ul = document.querySelector("ul")
+let iaName = "greg"
 
 // Old messages for the context
 let oldMessages = []
 
 function saveMessagesInLocalstorage() {
     localStorage.setItem("messages", JSON.stringify(oldMessages))
+}
+
+function reloadMessages() {
+    const content = localStorage.getItem("messagesList")
+    ul.innerHTML = content
 }
 
 // Ask the bot a question with the context
@@ -18,8 +24,8 @@ async function askBot(IAName) {
         stream: false,
         messages: oldMessages
     }
- 
-    const answer = await fetch("http://localhost:11434/api/chat", { 
+
+    const answer = await fetch("http://localhost:11434/api/chat", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -39,7 +45,6 @@ async function askBot(IAName) {
 async function sendMessage() {
     if (!sendButton.disabled) {
         if (input.value) {
-            let iaName = "darius"
 
             // Disable the button while building message
             sendButton.disabled = true
@@ -52,7 +57,7 @@ async function sendMessage() {
             input.focus()
 
             const answer = await askBot(iaName)
-            li.classList.add("generated")   
+            li.classList.add("generated")
 
             sendButton.disabled = false
 
@@ -62,6 +67,7 @@ async function sendMessage() {
 
             // Scroll down to see all the message
             ul.scrollTo(0, ul.scrollHeight)
+            localStorage.setItem("messagesList", ul.innerHTML)
         }
     }
 }
@@ -98,13 +104,15 @@ function addMessageUser(message) {
     ul.appendChild(li)
 }
 
-function speak(li) {
-    const talk = new SpeechSynthesisUtterance(li.textContent);
+async function speak(li) {
+    const textContent = li.textContent.split(iaName + ": ").slice(1).toString()
+
+    const talk = new SpeechSynthesisUtterance(textContent);
 
     talk.lang = navigator.language
     talk.rate = 1.5
 
-    speechSynthesis.speak(talk)
+    await speechSynthesis.speak(talk)
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -114,6 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
     else {
         oldMessages.push({ role: "user", content: "You have to talk in the language : " + navigator.language })
     }
+
+    reloadMessages()
 })
 
 sendButton.addEventListener("click", sendMessage)
