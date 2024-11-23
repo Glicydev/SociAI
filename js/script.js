@@ -39,7 +39,7 @@ async function askBot(IAName) {
 async function sendMessage() {
     if (!sendButton.disabled) {
         if (input.value) {
-            let iaName = "greg"
+            let iaName = "darius"
 
             // Disable the button while building message
             sendButton.disabled = true
@@ -51,9 +51,8 @@ async function sendMessage() {
             input.value = ""
             input.focus()
 
-            const answer = await askBot(iaName) 
+            const answer = await askBot(iaName)
             li.classList.add("generated")   
-            console.log(answer)
 
             sendButton.disabled = false
 
