@@ -10,7 +10,12 @@
 body {
     background-color: #222;
     font-family: "Lexend", sans-serif;
+    font-weight: 300;
     overflow: hidden;
+}
+
+code {
+    font-weight: 400;
 }
 
 main {
@@ -51,10 +56,21 @@ input {
     padding: 8px 10px;
     font-family: "Lexend", sans-serif;
     width: 30vw;
+    height: 3rem;
+    font-style: 1.5rem;
 }
 
 input:focus {
     border-bottom: linear-gradient(to right, blue, blueviolet);
+}
+
+.sender {
+    color: rgb(147, 147, 255);
+    font-size: 1.1rem;
+}
+
+.iaSender {
+    margin-bottom: 5px;
 }
 
 button {

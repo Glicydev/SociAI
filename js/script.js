@@ -18,8 +18,8 @@ async function askBot(IAName) {
         stream: false,
         messages: oldMessages
     }
-
-    const answer = await fetch("http://localhost:11434/api/chat", {
+ 
+    const answer = await fetch("http://localhost:11434/api/chat", { 
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -39,6 +39,7 @@ async function askBot(IAName) {
 async function sendMessage() {
     if (!sendButton.disabled) {
         if (input.value) {
+            let iaName = "greg"
 
             // Disable the button while building message
             sendButton.disabled = true
@@ -50,12 +51,13 @@ async function sendMessage() {
             input.value = ""
             input.focus()
 
-            const answer = await askBot("greg")
-            li.classList.add("generated")
+            const answer = await askBot(iaName) 
+            li.classList.add("generated")   
+            console.log(answer)
 
             sendButton.disabled = false
 
-            addMessageIa(answer.message.content, li)
+            addMessageIa(answer.message.content, li, iaName)
 
             saveMessagesInLocalstorage()
 
@@ -70,15 +72,13 @@ function loading() {
 
     li.textContent = "..."
     li.classList.add("messageIa")
-    const ul = document.querySelector("ul")
-
 
     ul.appendChild(li)
     return li
 }
 
-function addMessageIa(message, li) {
-    li.innerHTML = mdConverter.makeHtml(message)
+function addMessageIa(message, li, iaName) {
+    li.innerHTML = `<div class=\"iaSender sender\">${iaName}: </div>` + mdConverter.makeHtml(message)
 
     speak(li)
     if (message)
@@ -93,7 +93,7 @@ function addMessageUser(message) {
 
     oldMessages.push({ role: "user", content: message })
 
-    li.textContent = message
+    li.innerHTML = "<span class=\"sender\">You: </span>" + message
     li.classList.add("messageUser")
 
     ul.appendChild(li)
