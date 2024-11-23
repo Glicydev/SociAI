@@ -104,7 +104,6 @@ function speak(li) {
 
     talk.lang = navigator.language
     talk.rate = 1.5
-    talk.pitch = 1.5;
 
     speechSynthesis.speak(talk)
 }
