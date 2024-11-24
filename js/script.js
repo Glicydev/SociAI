@@ -65,8 +65,6 @@ async function sendMessage() {
 
             saveMessagesInLocalstorage()
 
-            // Scroll down to see all the message
-            ul.scrollTo(0, ul.scrollHeight)
             localStorage.setItem("messagesList", ul.innerHTML)
         }
     }
@@ -90,6 +88,8 @@ function addMessageIa(message, li, iaName) {
         oldMessages.push({ role: "assistant", content: message })
     hljs.highlightAll()
 
+    // Scroll down to see all the message
+    ul.scrollTo(0, ul.scrollHeight)
 }
 
 function addMessageUser(message) {
@@ -102,6 +102,9 @@ function addMessageUser(message) {
     li.classList.add("messageUser")
 
     ul.appendChild(li)
+
+    // Scroll down to see all the message
+    ul.scrollTo(0, ul.scrollHeight)
 }
 
 async function speak(li) {

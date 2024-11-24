@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     color: rgb(230, 255, 255);
+    scroll-behavior: smooth;
 }
 
 :root {
@@ -141,7 +142,9 @@ fieldset ul {
 li {
     width: fit-content;
     margin: 0.5rem;
+
     background-color: #444;
+
     padding: 1rem;
     max-width: 90%;
     animation-duration: 0.5s;
@@ -160,8 +163,6 @@ li code {
 
 li.messageIa {
     padding: 0.5rem;
-    align-self: flex-start;
-    border-radius: 0.6rem;
 }
 
 li.messageUser {
