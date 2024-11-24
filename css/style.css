@@ -20,7 +20,9 @@ code {
 
 main {
     padding: 1rem;
-    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
@@ -46,24 +48,6 @@ legend {
     padding: 1rem;
 }
 
-input {
-    outline: none;
-    background: none;
-    border: none;
-    padding: 0.2rem;
-    background-color: #333;
-    border-radius: 2px;
-    padding: 8px 10px;
-    font-family: "Lexend", sans-serif;
-    width: 30vw;
-    height: 3rem;
-    font-style: 1.5rem;
-}
-
-input:focus {
-    border-bottom: linear-gradient(to right, blue, blueviolet);
-}
-
 .sender {
     background: linear-gradient(45deg, rgba(143,143,255,1) 0%, rgba(121,121,255,1) 100%);
     font-size: 1.1rem;
@@ -76,9 +60,35 @@ input:focus {
     margin-bottom: 5px;
 }
 
+.send {
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 30rem;
+    background-color: #333;
+    padding: 0 9px;
+    border-radius: 4px;
+}
+
+input {
+    outline: none;
+    background: none;
+    border: none;
+    padding: 0.2rem;
+    padding: 8px 10px;
+    font-family: "Lexend", sans-serif;
+    width: 30vw;
+    height: 3rem;
+    font-style: 1.5rem;
+}
+
+input:focus {
+    border-bottom: linear-gradient(to right, blue, blueviolet);
+}
+
 button {
     background: none;
-    padding: 0.3rem;
     border: none;
     border-radius: 3px;
     transition: background-color 0.2s;
@@ -88,6 +98,7 @@ button {
     color: rgb(243, 243, 243);
     font-family: Arial, Helvetica, sans-serif;
     padding: 8px 10px;
+    height: 90%;
 }
 
 button:hover {
@@ -102,11 +113,13 @@ fieldset ul {
     height: 100%;
     list-style-type: none;
     transition: 0.45s;
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     background-color: #333;
     border-radius: 5px;
     padding: 1rem;
+    scrollbar-color: #222 #333;
+    scrollbar-width: thin;
 }
 
 li {
@@ -139,11 +152,11 @@ li.messageUser {
     padding: 0.5rem;
     align-self: flex-end;
     border-radius: 0.7rem;
-    animation-name: userMessageSpawn;
+    animation-name: messageSpawn;
 }
 
 li.generated {
-    animation-name: AIMessageSpawn;
+    animation-name: messageSpawn;
     background-color: transparent;
 }
 
@@ -152,29 +165,13 @@ li.generated {
     overflow-y: auto;
 }
 
-.send {
-    display: flex;
-    justify-content: center;
-}
-
 @media (max-width: 900px){
     fieldset ul {
         width: 100%;
     }
 }
 
-@keyframes userMessageSpawn {
-    from {
-        transform: translateY(3rem);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0) rotate(0);
-        opacity: 1;
-    }
-}
-
-@keyframes AIMessageSpawn {
+@keyframes messageSpawn {
     from {
         transform: translateY(3rem);
         opacity: 0;
