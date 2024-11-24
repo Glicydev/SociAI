@@ -7,15 +7,15 @@
     color: rgb(230, 255, 255);
 }
 
+:root {
+    --base-width: 40vw;
+}
+
 body {
     background-color: #222;
     
     font-family: "Lexend", sans-serif;
     font-weight: 300;
-    
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
 }
 
 code {
@@ -23,11 +23,9 @@ code {
 }
 
 main {
-    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40vw;
 }
 
 h1 {
@@ -65,8 +63,7 @@ legend {
 }
 
 .send {
-    width: 100%;
-    min-width: 30rem;
+    width: var(--base-width);
 
     display: flex;
     justify-content: center;
@@ -123,7 +120,7 @@ fieldset ul {
     display: flex;
     flex-direction: column;
 
-    width: 100%;
+    width: var(--base-width);
     height: 100%;
 
     list-style-type: none;
@@ -185,8 +182,14 @@ li.generated {
 }
 
 @media (max-width: 900px){
-    fieldset ul {
-        width: 100%;
+    :root {
+        --base-width: 60vw;
+    }
+}
+
+@media (max-width: 600px){
+    :root {
+        --base-width: 90vw;
     }
 }
 
