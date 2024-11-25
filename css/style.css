@@ -20,7 +20,7 @@ body {
 }
 
 code {
-    font-weight: 400;
+    font-weight: 450;
 }
 
 main {
@@ -43,6 +43,19 @@ fieldset {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background-color: #333;
+
+    scrollbar-color: #222 #333;
+    scrollbar-width: thin;
+
+    border-radius: 5px 5px 0 0;
+
+    overflow-x: hidden;
+}
+
+fieldset::-webkit-scrollbar {
+    border-radius: 10px;
 }
 
 
@@ -73,7 +86,7 @@ legend {
     background-color: #464646;
 
     padding: 0 9px;
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 5px 5px;
 }
 
 input {
@@ -118,7 +131,7 @@ button:hover {
 
 
 fieldset ul {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
 
     width: var(--base-width);
@@ -128,15 +141,8 @@ fieldset ul {
     transition: 0.45s;
 
     overflow-x: hidden;
-
-    background-color: #333;
     
-    padding: 0 1rem;
-
-    scrollbar-color: #222 #333;
-    scrollbar-width: thin;
-
-    border-radius: 5px 5px 0 0;
+    padding: 1rem;
 }
 
 li {
@@ -147,6 +153,9 @@ li {
 
     padding: 1rem;
     max-width: 90%;
+
+    animation-timing-function: ease-out;
+    animation-name: messageSpawn;
     animation-duration: 0.5s;
     animation-iteration-count: 1;
 }
@@ -163,17 +172,18 @@ li code {
 
 li.messageIa {
     padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.25);
+    animation-duration: 1s;
+    border-radius: 10px;
 }
 
 li.messageUser {
     padding: 0.5rem;
     align-self: flex-end;
     border-radius: 0.7rem;
-    animation-name: messageSpawn;
 }
 
 li.generated {
-    animation-name: messageSpawn;
     background-color: transparent;
 }
 
