@@ -99,11 +99,6 @@ input {
     padding: 8px 10px;
 
     font-family: "Lexend", sans-serif;
-    font-style: 1.5rem;
-}
-
-input:focus {
-    border-bottom: linear-gradient(to right, blue, blueviolet);
 }
 
 button {
